@@ -7,11 +7,23 @@ from array import array
 ROOT.PyConfig.IgnoreCommandLineOptions = True
 from importlib import import_module
 from os import system, environ
+import xgboost as xgb
+import logging
 
 from PhysicsTools.NanoAODTools.postprocessing.framework.datamodel import Collection, Object
 from PhysicsTools.NanoAODTools.postprocessing.framework.eventloop import Module
 from PhysicsTools.NanoAODTools.postprocessing.tools import deltaPhi, deltaR, closest
-from PhysicsTools.NanoSUSYTools.modules.xgbHelper import XGBHelper
+
+class XGBHelper:
+    def __init__(self, model_file, var_list):
+        self.bst = xgb.Booster(params={'nthread': 1}, model_file=model_file)
+        self.var_list = var_list
+        logging.info('Load XGBoost model %s, input variables:\n  %s' % (model_file, str(var_list)))
+
+    def eval(self, inputs):
+        dmat = xgb.DMatrix(np.array([[inputs[k] for k in self.var_list]]), feature_names=self.var_list)
+        return self.bst.predict(dmat)[0]
+
 
 class tauMVA(Module):
     def __init__(self):
@@ -31,7 +43,7 @@ class tauMVA(Module):
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         self.out = wrappedOutputTree
         self.out.branch("mt", 			"F", lenVar="nPFcand")
-	self.out.branch("taumva", 		"F", lenVar="nPFcand")
+	self.out.branch("BDT_Output", 		"F", lenVar="nPFcand")
 	self.out.branch("TauMVA_Stop0l",        "I")
 
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
@@ -131,7 +143,7 @@ class tauMVA(Module):
 
 	#print "mva output: ", mva_
 	self.out.fillBranch("mt", 		mt_)
-        self.out.fillBranch("taumva", 		mva_)
+        self.out.fillBranch("BDT_Output", 	mva_)
 	self.out.fillBranch("TauMVA_Stop0l", sum(self.TauMVA_Stop0l))
 		
 	return True
