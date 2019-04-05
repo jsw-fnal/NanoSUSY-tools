@@ -45,6 +45,20 @@ class tauMVA(Module):
         self.out.branch("mt", 			"F", lenVar="nPFcand")
 	self.out.branch("BDT_Output", 		"F", lenVar="nPFcand")
 	self.out.branch("TauMVA_Stop0l",        "I")
+	self.out.branch("nPFcand_save", 	"I")
+	self.out.branch("PFCand_pt",		"F", lenVar="nPFcand_save")   
+	self.out.branch("PFCand_abseta",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_chiso0p1",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_chiso0p2",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_chiso0p3",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_chiso0p4",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_totiso0p1",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_totiso0p2",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_totiso0p3",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_totiso0p4",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_neartrkdr",	"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_jetdr",		"F", lenVar="nPFcand_save")
+	self.out.branch("PFCand_jetcsv",	"F", lenVar="nPFcand_save")
 
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         pass
@@ -86,6 +100,13 @@ class tauMVA(Module):
 		candP4+=pfcand_buff;
 	return self.transverseMass(candP4, met);
 
+    def CreateTaus(self, mva, pfc):
+	mva_store = []
+	if mva[self.bdt_vars[0]] > 10.0 and abs(mva[self.bdt_vars[1]]) < 2.4 and abs(pfc.dz) < 0.2:
+		mva_store = mva.values()
+		print mva_store
+	return mva_store[0], mva_store[1], mva_store[2], mva_store[3], mva_store[4], mva_store[5], mva_store[6], mva_store[7], mva_store[8], mva_store[9], mva_store[10], mva_store[11], mva_store[12]
+
     def analyze(self, event):
         ## Getting objects
 	met	  = Object(event, self.metBranchName)
@@ -97,6 +118,19 @@ class tauMVA(Module):
 	mva = {}
 	mva_ = []
 	mt_ = []
+	MVASave_pt = []
+	MVASave_eta = []
+	MVASave_chiso0p1 = []
+	MVASave_chiso0p2 = []
+	MVASave_chiso0p3 = []
+	MVASave_chiso0p4 = []
+	MVASave_totiso0p1 = []
+	MVASave_totiso0p2 = []
+	MVASave_totiso0p3 = []
+	MVASave_totiso0p4 = []
+	MVASave_neartrkdr = []
+	MVASave_contjetdr = []
+	MVASave_contjetcsv = []
 	for pfc in pfcand:
 		mva_buff = 0.0
 		mt = 0.0
@@ -136,7 +170,21 @@ class tauMVA(Module):
 			       self.bdt_vars[10]: neartrkdr, 
 			       self.bdt_vars[11]: contjetdr, 
 			       self.bdt_vars[12]: contjetcsv}
+			pt, eta, chiso0p1, chiso0p2, chiso0p3, chiso0p4, totiso0p1, totiso0p2, totiso0p3, totiso0p4, neartrkdr, contjetdr, contjetcsv = self.CreateTaus(mva, pfc)
 			mva_buff = self.xgb.eval(mva)
+		MVASave_pt.append(pt)
+		MVASave_eta.append(eta)
+		MVASave_chiso0p1.append(chiso0p1)
+		MVASave_chiso0p2.append(chiso0p2)
+		MVASave_chiso0p3.append(chiso0p3)
+		MVASave_chiso0p4.append(chiso0p4)
+		MVASave_totiso0p1.append(totiso0p1)
+		MVASave_totiso0p2.append(totiso0p2)
+		MVASave_totiso0p3.append(totiso0p3)
+		MVASave_totiso0p4.append(totiso0p4)
+		MVASave_neartrkdr.append(neartrkdr)
+		MVASave_contjetdr.append(contjetdr)
+		MVASave_contjetcsv.append(contjetcsv)
 		mt_.append(mt)
 		mva_.append(mva_buff)
 	self.TauMVA_Stop0l = map(self.SelTauMVA, mva_)
@@ -145,5 +193,18 @@ class tauMVA(Module):
 	self.out.fillBranch("mt", 		mt_)
         self.out.fillBranch("BDT_Output", 	mva_)
 	self.out.fillBranch("TauMVA_Stop0l", sum(self.TauMVA_Stop0l))
+	self.out.fillBranch("PFCand_pt"		, MVASave_pt)   
+	self.out.fillBranch("PFCand_abseta"	, MVASave_eta)
+	self.out.fillBranch("PFCand_chiso0p1"	, MVASave_chiso0p1)
+	self.out.fillBranch("PFCand_chiso0p2"	, MVASave_chiso0p2)
+	self.out.fillBranch("PFCand_chiso0p3"	, MVASave_chiso0p3)
+	self.out.fillBranch("PFCand_chiso0p4"	, MVASave_chiso0p4)
+	self.out.fillBranch("PFCand_totiso0p1"	, MVASave_totiso0p1)
+	self.out.fillBranch("PFCand_totiso0p2"	, MVASave_totiso0p2)
+	self.out.fillBranch("PFCand_totiso0p3"	, MVASave_totiso0p3)
+	self.out.fillBranch("PFCand_totiso0p4"	, MVASave_totiso0p4)
+	self.out.fillBranch("PFCand_neartrkdr"	, MVASave_neartrkdr)
+	self.out.fillBranch("PFCand_jetdr"	, MVASave_contjetdr)
+	self.out.fillBranch("PFCand_jetcsv"	, MVASave_contjetcsv)
 		
 	return True
