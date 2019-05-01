@@ -21,12 +21,13 @@ def main(args):
 
     mods = []
     if process == "jetres":
-	mods = [ JetResSkim(args.era) ]
+	mods.append( JetResSkim(args.era) )
     elif process == "smear":
-	mods = [ qcdSmearProducer() ]
+	mods.append( qcdSmearProducer() )
     elif process == "qcdsf":
-	mods = [ QCDObjectsProducer(isQCD=isqcd, isData=isdata) ]
+	mods.append( QCDObjectsProducer(isQCD=isqcd, isData=isdata) )
     
+    #files=["root://cmseos.fnal.gov//eos/uscms/store/user/lpcsusyhad/Stop_production/Summer16_80X_v2_NanAOD_MC//QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/2016_MC_RunIISummer16MiniAODv2-PUMoriond17_80X_v6-v1-ext1/190124_030402/0000/prod2016MC_NANO_1-33.root"]
     files = []
     if len(args.inputfile) > 5 and args.inputfile[0:5] == "file:":
         #This is just a single test input file
