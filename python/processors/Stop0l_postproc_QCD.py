@@ -8,26 +8,25 @@ from PhysicsTools.NanoAODTools.postprocessing.framework.postprocessor import Pos
 from PhysicsTools.NanoSUSYTools.modules.qcdSmearProducer import *
 from PhysicsTools.NanoSUSYTools.modules.JetResSkim import *
 from PhysicsTools.NanoSUSYTools.modules.QCDObjectsProducer import *
+from PhysicsTools.NanoSUSYTools.modules.updateEvtWeightSmear import *
+from PhysicsTools.NanoSUSYTools.modules.LLObjectsProducer import *
 
 def main(args):
     isdata = len(args.dataEra) > 0
-    isfastsim = args.isFastSim
     isqcd = args.sampleName.startswith("QCD_")
+    isqcdorig = "ORIG" in args.sampleName
     process = args.process
-
-    if isdata and isfastsim:
-        print "ERROR: It is impossible to have a dataset that is both data and fastsim"
-        exit(0)
 
     mods = []
     if process == 'jetres':
 	mods.append(JetResSkim(args.era))
     elif process == 'smear':
-	mods.append( qcdSmearProducer() )
+	mods.append(UpdateEvtWeightSmear(isdata, args.crossSection, args.nEvents, args.sampleName))
+	mods.append(qcdSmearProducer())
     elif process == 'qcdsf':
-	mods.append( QCDObjectsProducer(isQCD=isqcd, isData=isdata) )
+	mods.append(QCDObjectsProducer(isQCD=isqcd, isData=isdata, isQCDOrig=isqcdorig))
+	mods.append(LLObjectsProducer(args.era))
     
-    #files = ["root://cmseos.fnal.gov//eos/uscms/store/user/lpcsusyhad/Stop_production/Summer16_94X_v3/PreProcessed_22Feb2019/QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/2016_MINIAODv3_RunIISummer16MiniAODv3-PUMoriond17_94X_v3-v1/190225_211123/0000/prod2016MC_NANO_109.root"]
     files = []
     if len(args.inputfile) > 5 and args.inputfile[0:5] == "file:":
         #This is just a single test input file
@@ -39,7 +38,7 @@ def main(args):
     
     if process=='jetres':  p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop_res.txt",typeofprocess="resp",modules=mods,provenance=False)
     elif process=='smear': p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop_QCD.txt", outputbranchselsmear="keep_and_drop_QCD.txt",typeofprocess="smear",modules=mods,provenance=False)
-    elif process=='qcdsf': p=PostProcessor(args.outputfile,files,cut="MET_pt > 200 & nJet >= 2", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    elif process=='qcdsf': p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_EventFilter & Pass_HT", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
     p.run()
 
 if __name__ == "__main__":
