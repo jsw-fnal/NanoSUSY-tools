@@ -32,9 +32,9 @@ class QCDObjectsProducer(Module):
 	self.out.branch("pseudoRespCSV"        , "F")
 	self.out.branch("pseudoRespPseudoGenPT", "F")
 	self.out.branch("pseudoRespPassFilter" , "O")
-	if self.isQCDOrig:
-		self.out.branch("nBootstrapWeight",        "I")
-		self.out.branch("bootstrapWeight",         "I", lenVar="nBootstrapWeight")
+	#if self.isQCDOrig:
+	#	self.out.branch("nBootstrapWeight",        "I")
+	#	self.out.branch("bootstrapWeight",         "I", lenVar="nBootstrapWeight")
 
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         pass
@@ -55,11 +55,12 @@ class QCDObjectsProducer(Module):
       	flv = -1
       	resp = -1
 	mmout = []
-	for iG in xrange(len(genJets)):
+	for iG in range(0,len(genJets)):
 		if iG > 2: break
         	if genJets[iG].pt == 0: break
         	fpt = -1
 		for rJ in xrange(len(jets)):
+			if not jets[rJ].Stop0l: continue
 			if jets[rJ].genJetIdx == iG:
 				fpt = jets[rJ].pt
 				break
@@ -68,16 +69,16 @@ class QCDObjectsProducer(Module):
 			ind = iG
 			resp =  fpt/genJets[iG].pt
 			MM = abs(fpt - genJets[iG].pt)
-			flv = genJets[iG].partonFlavour
+			flv = abs(genJets[iG].partonFlavour)
     
-		if ind >= 0:
-			mmResp = resp
-			mmInd = ind
-			mmFlv = flv
-      		else:
-			mmResp = -1
-			mmInd = -1
-			mmFlv = -1
+	if ind >= 0:
+		mmResp = resp
+		mmInd = ind
+		mmFlv = flv
+	else:
+		mmResp = -1
+		mmInd = -1
+		mmFlv = -1
 
 	mmout = [mmInd, mmResp, mmFlv]
 	return mmout     		
@@ -91,8 +92,9 @@ class QCDObjectsProducer(Module):
         met       = Object(event, self.metBranchName)
 
 	jetNearMETInd, MMJetDPhi = -1, -1
-	for iJ in xrange(len(jets)):
+	for iJ in range(0,len(jets)):
 		if iJ > 2 : continue
+		if not jets[iJ].Stop0l: continue
 		dPhi = abs(deltaPhi(jets[iJ].phi, met.phi))
 		if(MMJetDPhi < 0 or dPhi < MMJetDPhi):
 			MMJetDPhi = dPhi
@@ -121,15 +123,15 @@ class QCDObjectsProducer(Module):
 			gjet = genjets[iG]
 			if iG != trueRespInd: continue
 			trueRespGenPT = gjet.pt
-			trueRespFlv = gjet.partonFlavour
+			trueRespFlv = abs(gjet.partonFlavour)
 			break
 	
-	if self.isQCDOrig:
-		b = []
-		for iB in xrange(self.nBootstraps):
-		        b.append(1)
-		self.out.fillBranch("nBootstrapWeight",        self.nBootstraps)
-		self.out.fillBranch("bootstrapWeight",         b)
+	#if self.isQCDOrig:
+	#	b = []
+	#	for iB in xrange(self.nBootstraps):
+	#	        b.append(1)
+	#	self.out.fillBranch("nBootstrapWeight",        self.nBootstraps)
+	#	self.out.fillBranch("bootstrapWeight",         b)
 	
         ### Store output
 	self.out.fillBranch("pseudoResp"           , MMPseudoResp)
