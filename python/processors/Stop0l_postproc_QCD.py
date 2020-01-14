@@ -12,13 +12,12 @@ from PhysicsTools.NanoSUSYTools.modules.updateEvtWeightSmear import *
 from PhysicsTools.NanoSUSYTools.modules.LLObjectsProducer import *
 from PhysicsTools.NanoSUSYTools.modules.qcdskimmingfile import *
 from PhysicsTools.NanoSUSYTools.modules.qcdSFProducer import *
-#from PhysicsTools.NanoSUSYTools.modules.qcdBootstrapProducer import *
-from PhysicsTools.NanoSUSYTools.modules.qcdjetptSFProducer import *
+
 def main(args):
     isdata = len(args.dataEra) > 0
     isqcd = args.sampleName.startswith("QCD_")
     process = args.process
-    print 'is it data', isdata
+
     mods = []
     if process == 'jetres':
 	mods.append(JetResSkim(args.era))
@@ -29,8 +28,8 @@ def main(args):
 	mods.append(QCDObjectsProducer(isQCD=isqcd, isData=isdata))
 	mods.append(LLObjectsProducer(args.era,isData=isdata))
         mods.append(qcdskimmingfile(args.era,isData=isdata)) 
-        #mods.append(qcdSFProducer(args.era))
-        #mods.append(qcdjetptSFProducer(args.era))     
+    elif process == 'sfcalc':
+	mods.append(qcdSFProducer(args.era))
     
     files = []
     if len(args.inputfile) > 5 and args.inputfile[0:5] == "file:":
@@ -41,10 +40,11 @@ def main(args):
         with open(args.inputfile) as f:
             files = [line.strip() for line in f]
     
-    if process=='jetres':  p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop_res.txt",typeofprocess="resp",modules=mods,provenance=False)
-    elif process=='smear': p=PostProcessor(args.outputfile,files,cut="", branchsel=None, outputbranchsel="keep_and_drop_QCD.txt", outputbranchselsmear="keep_and_drop_QCD.txt",typeofprocess="smear",modules=mods,provenance=False)
-    #elif process=='qcdsf': p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_EventFilter & Pass_JetID", branchsel=None, outputbranchsel="keep_and_drop_sf.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
-    elif process=='qcdsf': p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_NJets30", branchsel=None, outputbranchsel="keep_and_drop_sf.txt", modules=mods,provenance=False)
+    if process=='jetres':   p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop_res.txt",typeofprocess="resp",modules=mods,provenance=False,maxEvents=args.maxEvents)
+    elif process=='smear':  p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop_QCD.txt", outputbranchselsmear="keep_and_drop_QCD.txt",typeofprocess="smear",modules=mods,provenance=False,maxEvents=args.maxEvents)
+    #elif process=='qcdsf':  p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_NJets20 & Pass_EventFilter & Pass_HT & Pass_JetID", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    elif process=='qcdsf':  p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_NJets30>=2", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    elif process=='sfcalc': p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
     p.run()
 
 if __name__ == "__main__":

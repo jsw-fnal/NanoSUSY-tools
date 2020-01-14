@@ -19,9 +19,10 @@ from multiprocessing import Pool
 #DelExe    = '../Stop0l_postproc.py'
 tempdir = '/uscms_data/d3/%s/condor_temp/' % getpass.getuser()
 ShortProjectName = 'PostProcess'
-VersionNumber = 'data_v5_post'
+VersionNumber = '_v5'
 argument = "--inputFiles=%s.$(Process).list "
-sendfiles = ["../keep_and_drop.txt", "../keep_and_drop_skim.txt", "../keep_and_drop_res.txt", "../keep_and_drop_QCD.txt","../keep_and_drop_sf.txt"]
+#sendfiles = ["../keep_and_drop.txt", "../keep_and_drop_tauMVA.txt"]
+sendfiles = ["../keep_and_drop.txt", "../keep_and_drop_tauMVA.txt", "../keep_and_drop_train.txt", "../keep_and_drop_LL.txt", "../keep_and_drop_limits.txt", "../keep_and_drop_res.txt", "../keep_and_drop_QCD.txt"]
 TTreeName = "Events"
 NProcess = 10
 
@@ -40,7 +41,7 @@ def tar_cmssw():
         if tarinfo.size > 100*1024*1024:
             tarinfo = None
             return tarinfo
-        exclude_patterns = ['/.git/', '/tmp/', '/jobs.*/', '/logs/', '/.SCRAM/', '.pyc']
+        exclude_patterns = ['/.git/', '/tmp/', '/jobs.*/', '/logs/', '/.SCRAM/', '.pyc', '/Limits/*', '/HiggsAnalysis/*', '/CombineHarvester/*', '/TauMVATraining/*']
         for pattern in exclude_patterns:
             if re.search(pattern, tarinfo.name):
                 # print('ignoring %s in the tarball', tarinfo.name)
@@ -117,7 +118,10 @@ def Condor_Sub(condor_file):
 def GetNEvent(file):
     return (file, uproot.numentries(file, TTreeName))
 
-def SplitPro(key, file, lineperfile=10, eventsplit=2**23, TreeName=None):
+#for QCD smearing postprocess lineperfile=1
+#some QCD smeared files have zero event and that gives and error when running on multiple files
+#Separate them out to 1 file per job
+def SplitPro(key, file, lineperfile=10, eventsplit=2**20, TreeName=None):
     # Default to 20 file per job, or 2**20 ~ 1M event per job
     # At 26Hz processing time in postv2, 1M event runs ~11 hours
     splitedfiles = []
@@ -167,7 +171,7 @@ def my_process(args):
     ## temp dir for submit
     global tempdir
     global ProjectName
-    ProjectName = time.strftime('%b%d') + ShortProjectName + VersionNumber + ""
+    ProjectName = time.strftime('%b%d') + ShortProjectName + VersionNumber + "_skim"
     if args.era == 0:
         tempdir = tempdir + os.getlogin() + "/" + ProjectName +  "/"
     else:
@@ -203,8 +207,8 @@ def my_process(args):
 
         #define output directory
         if args.outputdir == "": outdir = sample["Outpath__"]
-        else: outdir = args.outputdir + "/" + name + "/"
-        #else: outdir = args.outputdir + "/"
+        #else: outdir = args.outputdir + "/" + name + "/"
+        else: outdir = args.outputdir + "/"
 
         #Update RunExe.csh
         RunHTFile = tempdir + "/" + name + "_RunExe.csh"

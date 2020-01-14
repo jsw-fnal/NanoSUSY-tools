@@ -19,10 +19,10 @@ from multiprocessing import Pool
 #DelExe    = '../Stop0l_postproc.py'
 tempdir = '/uscms_data/d3/%s/condor_temp/' % getpass.getuser()
 ShortProjectName = 'PostProcess'
-VersionNumber = '_smear'
+VersionNumber = '_v3'
 argument = "--inputFiles=%s.$(Process).list "
 #sendfiles = ["../keep_and_drop.txt", "../keep_and_drop_tauMVA.txt"]
-sendfiles = ["../keep_and_drop.txt", "../keep_and_drop_skim.txt", "../keep_and_drop_res.txt", "../keep_and_drop_QCD.txt"]
+sendfiles = ["../keep_and_drop.txt", "../keep_and_drop_tauMVA.txt", "../keep_and_drop_train.txt", "../keep_and_drop_LL.txt", "../keep_and_drop_res.txt", "../keep_and_drop_QCD.txt"]
 TTreeName = "Events"
 NProcess = 10
 
@@ -119,7 +119,7 @@ def GetNEvent(file):
 
 #for smear 2**16
 #for qcd sf 2**18
-def SplitPro(key, file, lineperfile=10, eventsplit=2**20, TreeName=None):
+def SplitPro(key, file, lineperfile=10, eventsplit=2**18, TreeName=None):
     # Default to 20 file per job, or 2**20 ~ 1M event per job
     # At 26Hz processing time in postv2, 1M event runs ~11 hours
     splitedfiles = []
@@ -169,7 +169,7 @@ def my_process(args):
     ## temp dir for submit
     global tempdir
     global ProjectName
-    ProjectName = time.strftime('%b%d') + ShortProjectName + VersionNumber + "_qcdsmear_083019"
+    ProjectName = time.strftime('%b%d') + ShortProjectName + VersionNumber + "_qcdsf_091919_raw_v2"
     if args.era == 0:
         tempdir = tempdir + os.getlogin() + "/" + ProjectName +  "/"
     else:

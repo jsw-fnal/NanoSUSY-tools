@@ -29,6 +29,7 @@ from PhysicsTools.NanoSUSYTools.modules.PrefireCorr import PrefCorr
 from PhysicsTools.NanoSUSYTools.modules.ISRWeightProducer import ISRSFWeightProducer
 from PhysicsTools.NanoSUSYTools.modules.Stop0l_trigger import Stop0l_trigger
 from PhysicsTools.NanoSUSYTools.modules.SoftBDeepAK8SFProducer import SoftBDeepAK8SFProducer
+from PhysicsTools.NanoSUSYTools.modules.qcdBootstrapProducer import qcdBootstrapProducer
 
 # JEC files are those recomended here (as of Mar 1, 2019)
 # https://twiki.cern.ch/twiki/bin/view/CMS/JECDataMC#Recommended_for_MC
@@ -55,7 +56,7 @@ DataDepInputs = {
                   "pileup_MC": "pileup_profile_2018.root",
                   "JERMC": "Autumn18_V7_MC",
                   "JECMC": "Autumn18_V19_MC",
-                  "redoJEC": False,
+                  "redoJEC": True,
                   "taggerWD": "TopTaggerCfg-DeepResolved_DeepCSV_GR_nanoAOD_2018_v1.0.3",
                  }
     },
@@ -162,6 +163,8 @@ def main(args):
     isdata = len(args.dataEra) > 0
     isfastsim = args.isFastSim
     isSUSY = args.sampleName.startswith("SMS_")
+    isqcd = args.sampleName.startswith("QCD_")
+    isqcdorig = "ORIG" in args.sampleName
 
     if isdata and isfastsim:
         print "ERROR: It is impossible to have a dataset that is both data and fastsim"
@@ -220,6 +223,7 @@ def main(args):
              Stop0lBaselineProducer(args.era, isData=isdata, isFastSim=isfastsim),
              SoftBDeepAK8SFProducer(args.era, isData=isdata, isFastSim=isfastsim),
              Stop0l_trigger(args.era, isData=isdata),
+	     qcdBootstrapProducer(),
              UpdateEvtWeight(isdata, args.crossSection, args.nEvents, args.sampleName)
             ]
 
@@ -294,7 +298,8 @@ def main(args):
         with open(args.inputfile) as f:
             files = [line.strip() for line in f]
 
-    p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False)
+    p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    #p=PostProcessor(args.outputfile,files,cut="MET_pt > 200", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
     p.run()
 
 if __name__ == "__main__":

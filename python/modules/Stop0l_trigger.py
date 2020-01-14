@@ -282,8 +282,7 @@ class Stop0l_trigger(Module):
 	MET_trigger_eff_low_dm_QCD = MET_trigger_eff_low_dm_QCD_down = MET_trigger_eff_low_dm_QCD_up = MET_trigger_eff_low_dm_QCD_down_METSig = MET_trigger_eff_low_dm_QCD_up_METSig = 0
 
 	if (met.pt > 100):
-		#print 'metpt here is: ',met.pt
-                MET_trigger_eff_loose_baseline, MET_trigger_eff_loose_baseline_down, MET_trigger_eff_loose_baseline_up = self.get_efficiency("MET_loose_baseline", met.pt)
+		MET_trigger_eff_loose_baseline, MET_trigger_eff_loose_baseline_down, MET_trigger_eff_loose_baseline_up = self.get_efficiency("MET_loose_baseline", met.pt)
 		MET_trigger_eff_high_dm, MET_trigger_eff_high_dm_down, MET_trigger_eff_high_dm_up = self.get_efficiency("MET_high_dm", met.pt)
 		MET_trigger_eff_low_dm, MET_trigger_eff_low_dm_down, MET_trigger_eff_low_dm_up = self.get_efficiency("MET_low_dm", met.pt)
 		MET_trigger_eff_loose_baseline_QCD, MET_trigger_eff_loose_baseline_QCD_down, MET_trigger_eff_loose_baseline_QCD_up = self.get_efficiency("MET_loose_baseline_QCD", met.pt)

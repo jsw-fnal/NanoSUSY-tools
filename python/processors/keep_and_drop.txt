@@ -1,4 +1,15 @@
 # this is a comment
+drop SV_*
+drop TrigObj_*
+drop TkMET_*
+drop RawMET_*
+#drop CaloMET_*
+drop ChsMET_*
+drop PuppiMET_*
+drop GenDressedLepton_*
+drop SoftActivity*
+drop fixedGridRho*
+drop Electron_mva*
 # drop *btagCSVV2*
 ## Input for Track TauMVA
 #drop PFcand_*
@@ -14,22 +25,3 @@
 drop LHEPdfWeight
 drop nLHEPdfWeight
 drop Jet_btagSF*
-drop fixedGridRhoFastjetCentralNeutral
-drop PuppiMET_pt
-drop RawMET_phi
-drop fixedGridRhoFastjetCentralCalo
-drop fixedGridRhoFastjetAll
-drop TkMET_pt
-drop TkMET_sumEt
-drop ChsMET_pt
-drop Jet_btagCMVA
-drop OtherPV_z
-drop ChsMET_phi
-drop RawMET_pt
-drop nOtherPV
-drop PuppiMET_sumEt
-drop ChsMET_sumEt
-drop TkMET_phi
-drop PuppiMET_phi
-drop RawMET_sumEt
-

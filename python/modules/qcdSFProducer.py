@@ -42,6 +42,7 @@ class qcdSFProducer(Module):
         self.out.branch("qcdRespTailWeightHM","F")
         self.corrhist=self.loadhisto(self.correctionfile,self.correctionhist)
         self.corrhistHM=self.loadhisto(self.correctionfile,self.correctionhistHM)
+
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         pass
 

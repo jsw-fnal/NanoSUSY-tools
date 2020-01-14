@@ -36,6 +36,7 @@ class Stop0lBaselineProducer(Module):
 
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         self.out = wrappedOutputTree
+        #self.out.branch("Pass_LeptonTauVeto", "O")
         self.out.branch("Pass_JetID"         + self.suffix, "O")
         self.out.branch("Pass_CaloMETRatio"  + self.suffix, "O", title="ICHEP16 Filter: pfMET/CaloMET < 5")
         self.out.branch("Pass_EventFilter"   + self.suffix, "O")
@@ -71,7 +72,6 @@ class Stop0lBaselineProducer(Module):
         for bn in lob:
             if self.suffix and "Stop0l" == bn[0:6] and self.suffix in bn:
                 self.branchMap[bn[len("Stop0l_"):-len(self.suffix)]] = bn[len("Stop0l_"):]
-
 
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         pass
@@ -252,6 +252,7 @@ class Stop0lBaselineProducer(Module):
         PassexHEMVeto20 = self.PassHEMVeto(jets, -3.2, -1.2, -1.77, -0.67, 20)
         PassexHEMVeto30 = self.PassHEMVeto(jets, -3.2, -1.2, -1.77, -0.67, 30)
         ### Store output
+        #self.out.fillBranch("Pass_LeptonTauVeto", PassLeptonTauVeto)
         self.out.fillBranch("Pass_JetID"         + self.suffix, PassJetID)
         self.out.fillBranch("Pass_CaloMETRatio"  + self.suffix, PassCaloMETRatio)
         self.out.fillBranch("Pass_EventFilter"   + self.suffix, PassEventFilter)
