@@ -1,0 +1,35 @@
+# this is a comment
+# drop *btagCSVV2*
+## Input for Track TauMVA
+#drop PFcand_*
+## Input for DeepResolved
+#drop Jet_deepFlavour*
+#drop Jet_deepCSV*
+#drop Jet_qg*
+#drop Jet_Cvs*
+#drop Jet_btagDeepFlavB
+#drop Jet_*Mult 
+#drop Jet_*EF
+## With PDFUncertiantyProducer, we will only store the systematic
+drop LHEPdfWeight
+drop nLHEPdfWeight
+drop Jet_btagSF*
+#drop fixedGridRhoFastjetCentralNeutral
+drop PuppiMET_pt
+drop RawMET_phi
+#drop fixedGridRhoFastjetCentralCalo
+#drop fixedGridRhoFastjetAll
+drop TkMET_pt
+drop TkMET_sumEt
+drop ChsMET_pt
+drop Jet_btagCMVA
+drop OtherPV_z
+drop ChsMET_phi
+drop RawMET_pt
+drop nOtherPV
+drop PuppiMET_sumEt
+drop ChsMET_sumEt
+drop TkMET_phi
+drop PuppiMET_phi
+drop RawMET_sumEt
+

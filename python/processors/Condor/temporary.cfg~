@@ -1,0 +1,32 @@
+# QCD_SMEAR_HT_100to200_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_102319_v4, QCD_HT_100to200_2016.txt, Events, 27990000, 31403, 0, 1.0
+# QCD_SMEAR_HT_200to300_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_102319_v4, QCD_HT_200to300_2016.txt, Events, 1712000, 26647, 0, 1.0
+# QCD_SMEAR_HT_300to500_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_101519_v4, QCD_HT_300to500_2016.txt, Events, 347700, 59531, 0, 1.0
+# QCD_SMEAR_HT_500to700_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_101519_v4, QCD_HT_500to700_2016.txt, Events, 32100, 2038142, 0, 1.0
+# QCD_SMEAR_HT_700to1000_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_102319_v4, QCD_HT_700to1000_2016.txt, Events, 6831, 5116203, 0, 1.0
+# QCD_SMEAR_HT_1000to1500_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_101519_v4, QCD_HT_1000to1500_2016.txt, Events, 1207, 9086230, 0, 1.0
+# QCD_SMEAR_HT_1500to2000_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_101519_v4, QCD_HT_1500to2000_2016.txt, Events, 119.9, 22086266, 0, 1.0
+# QCD_SMEAR_HT_2000toInf_2016, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2016_101519_v4, QCD_HT_2000toInf_2016.txt, Events, 25.24, 26449147, 0, 1.0
+# QCD_SMEAR_HT_100to200_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_100to200_2017.txt, Events, 27990000, 125936, 0, 1.0
+# QCD_SMEAR_HT_200to300_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_200to300_2017.txt, Events, 1712000, 64092, 28, 1.0
+# QCD_SMEAR_HT_300to500_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_300to500_2017.txt, Events, 347700, 192780, 206, 1.0
+# QCD_SMEAR_HT_500to700_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_500to700_2017.txt, Events, 32100, 1786511, 6207, 1.0
+# QCD_SMEAR_HT_700to1000_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_700to1000_2017.txt, Events, 6831, 5089273, 20845, 1.0
+# QCD_SMEAR_HT_1000to1500_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_1000to1500_2017.txt, Events, 1207, 12536793, 49161, 1.0
+# QCD_SMEAR_HT_1500to2000_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_1500to2000_2017.txt, Events, 119.9, 26391750, 157184, 1.0
+# QCD_SMEAR_HT_2000toInf_2017, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2017_101519_v4, QCD_HT_2000toInf_2017.txt, Events, 25.24, 31208297, 393338, 1.0
+# QCD_SMEAR_HT_100to200_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_100to200_2018.txt, Events, 27990000, 101109, 100, 1.0
+# QCD_SMEAR_HT_200to300_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_200to300_2018.txt, Events, 1712000, 63562, 0, 1.0
+# QCD_SMEAR_HT_300to500_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_300to500_2018.txt, Events, 347700, 127186, 41, 1.0
+# QCD_SMEAR_HT_500to700_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_500to700_2018.txt, Events, 32100, 1610208, 2809, 1.0
+# QCD_SMEAR_HT_700to1000_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_700to1000_2018.txt, Events, 6831, 7644878, 18351, 1.0
+# QCD_SMEAR_HT_1000to1500_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_1000to1500_2018.txt, Events, 1207, 11236207, 24839, 1.0
+# QCD_SMEAR_HT_1500to2000_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_1500to2000_2018.txt, Events, 119.9, 24735007, 82923, 1.0
+# QCD_SMEAR_HT_2000toInf_2018, /eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4, QCD_HT_2000toInf_2018.txt, Events, 25.24, 28929356, 214278, 1.0
+QCD_HT_100to200_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_100to200_2018.txt, Events, 27990000, 93962673, 9705, 1.0
+QCD_HT_200to300_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_200to300_2018.txt, Events, 1712000, 54270554, 18888, 1.0
+QCD_HT_300to500_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_300to500_2018.txt, Events, 347700, 54631132, 30447, 1.0
+QCD_HT_500to700_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_500to700_2018.txt, Events, 32100, 55104581, 48379, 1.0
+QCD_HT_700to1000_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_700to1000_2018.txt, Events, 6831, 44002424, 54861, 1.0
+QCD_HT_1000to1500_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_1000to1500_2018.txt, Events, 1207, 15437011, 29214, 1.0
+QCD_HT_1500to2000_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_1500to2000_2018.txt, Events, 119.9, 10921419, 33668, 1.0
+QCD_HT_2000toInf_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/Autumn18_102X_v1/PostProcessed_22March2019_v5, QCD_HT_2000toInf_2018.txt, Events, 25.24, 5445111, 30566, 1.0

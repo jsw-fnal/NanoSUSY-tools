@@ -1,0 +1,3 @@
+root://cmseos.fnal.gov//eos/uscms/store/user/mkilpatr/13TeV/qcdNanoSmear_PostProcess_2018_101519_v4/QCD_HT_300to500_2018/QCD_HT_300to500_2018_0.root
+
+

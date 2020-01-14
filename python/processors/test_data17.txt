@@ -1,0 +1,1 @@
+root://cmseos.fnal.gov//store/user/lpcsusyhad/Stop_production/Fall17_94X_Mar_2018_NanAOD_Data/PostProcessed_14May2019_v4p1//Data_MET_2017_PeriodB/Data_MET_2017_PeriodB_16.root

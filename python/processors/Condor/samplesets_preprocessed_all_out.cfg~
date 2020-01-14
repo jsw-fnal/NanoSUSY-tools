@@ -1,0 +1,27 @@
+#2016 QCD smeared sample
+# QCD_HT_100to200_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_100to200_2016.txt, Events, 27990000, 31527, 0, 1.0
+# QCD_HT_200to300_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_200to300_2016.txt, Events, 1712000, 26645, 0, 1.0
+# QCD_HT_300to500_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_300to500_2016.txt, Events, 347700, 59819, 0, 1.0
+# QCD_HT_500to700_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_500to700_2016.txt, Events, 32100, 1302997, 0, 1.0
+# QCD_HT_700to1000_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_700to1000_2016.txt, Events, 6831, 5091980, 0, 1.0
+# QCD_HT_1000to1500_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_1000to1500_2016.txt, Events, 1207, 9043553, 0, 1.0
+# QCD_HT_1500to2000_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_1500to2000_2016.txt, Events, 119.9, 21720906, 0, 1.0
+# QCD_HT_2000toInf_2016, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2016_PreProcessed_sample/, QCD_HT_2000toInf_2016.txt, Events, 25.24, 26214999, 0, 1.0
+#2017 QCD smeared sample                                                                                                                                                           
+# QCD_HT_100to200_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_100to200_2017.txt, Events, 27990000, 126318, 0, 1.0
+# QCD_HT_200to300_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_200to300_2017.txt, Events, 1712000, 84902, 28, 1.0
+# QCD_HT_300to500_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_300to500_2017.txt, Events, 347700, 187775, 202, 1.0
+# QCD_HT_500to700_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_500to700_2017.txt, Events, 32100, 1766773, 6232, 1.0
+# QCD_HT_700to1000_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_700to1000_2017.txt, Events, 6831, 8416011, 35042, 1.0
+# QCD_HT_1000to1500_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_1000to1500_2017.txt, Events, 1207, 12472074, 49055, 1.0
+# QCD_HT_1500to2000_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_1500to2000_2017.txt, Events, 119.9, 26327371, 156475, 1.0
+QCD_HT_2000toInf_2017, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2017_PreProcessed_sample/, QCD_HT_2000toInf_2017.txt, Events, 25.24, 31339866, 395608, 1.0
+# #2018 QCD smeared sample
+# QCD_HT_100to200_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_100to200_2018.txt, Events, 27990000, 101326, 100, 1.0
+# QCD_HT_200to300_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_200to300_2018.txt, Events, 1712000, 63616, 0, 1.0
+# QCD_HT_300to500_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_300to500_2018.txt, Events, 347700, 127519, 38, 1.0
+# QCD_HT_500to700_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_500to700_2018.txt, Events, 32100, 1608586, 2837, 1.0
+# QCD_HT_700to1000_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_700to1000_2018.txt, Events, 6831, 7584397, 18353, 1.0
+#QCD_HT_1000to1500_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_1000to1500_2018.txt, Events, 1207, 11184590, 24749, 1.0
+#QCD_HT_1500to2000_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_1500to2000_2018.txt, Events, 119.9, 24699751, 82411, 1.0
+#QCD_HT_2000toInf_2018, /eos/uscms/store/user/lpcsusyhad/Stop_production/QCD_smearing/QCD_smeared_2018_PreProcessed_sample/, QCD_HT_2000toInf_2018.txt, Events, 25.24, 28966135, 214040, 1.0
