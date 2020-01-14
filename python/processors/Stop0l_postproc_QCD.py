@@ -10,7 +10,6 @@ from PhysicsTools.NanoSUSYTools.modules.JetResSkim import *
 from PhysicsTools.NanoSUSYTools.modules.QCDObjectsProducer import *
 from PhysicsTools.NanoSUSYTools.modules.updateEvtWeightSmear import *
 from PhysicsTools.NanoSUSYTools.modules.LLObjectsProducer import *
-from PhysicsTools.NanoSUSYTools.modules.qcdskimmingfile import *
 from PhysicsTools.NanoSUSYTools.modules.qcdSFProducer import *
 
 def main(args):
@@ -23,11 +22,10 @@ def main(args):
 	mods.append(JetResSkim(args.era))
     elif process == 'smear':
 	mods.append(UpdateEvtWeightSmear(isdata, args.crossSection, args.nEvents, args.sampleName))
-	mods.append(qcdSmearProducer())
+	mods.append(qcdSmearProducer(args.era))
     elif process == 'qcdsf':
 	mods.append(QCDObjectsProducer(isQCD=isqcd, isData=isdata))
 	mods.append(LLObjectsProducer(args.era,isData=isdata))
-        mods.append(qcdskimmingfile(args.era,isData=isdata)) 
     elif process == 'sfcalc':
 	mods.append(qcdSFProducer(args.era))
     
@@ -42,8 +40,7 @@ def main(args):
     
     if process=='jetres':   p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop_res.txt",typeofprocess="resp",modules=mods,provenance=False,maxEvents=args.maxEvents)
     elif process=='smear':  p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop_QCD.txt", outputbranchselsmear="keep_and_drop_QCD.txt",typeofprocess="smear",modules=mods,provenance=False,maxEvents=args.maxEvents)
-    #elif process=='qcdsf':  p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_NJets20 & Pass_EventFilter & Pass_HT & Pass_JetID", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
-    elif process=='qcdsf':  p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_NJets30>=2", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    elif process=='qcdsf':  p=PostProcessor(args.outputfile,files,cut="Pass_MET & Pass_NJets30", branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
     elif process=='sfcalc': p=PostProcessor(args.outputfile,files,cut=None, branchsel=None, outputbranchsel="keep_and_drop.txt", modules=mods,provenance=False,maxEvents=args.maxEvents)
     p.run()
 

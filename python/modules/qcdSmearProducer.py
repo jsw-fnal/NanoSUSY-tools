@@ -14,7 +14,7 @@ from rootpy.tree import Tree, TreeModel, IntCol, FloatArrayCol
 
 
 class qcdSmearProducer(Module):
-    def __init__(self):
+    def __init__(self, era):
         self.writeHistFile=True
         self.metBranchName="MET"
         self.xBinWidth = 0.01
@@ -24,8 +24,14 @@ class qcdSmearProducer(Module):
         self.nSmearJets = 2
         self.nBootstraps = 50
         self.doFlatSampling = True
+	self.era = era
         self.respInputName = "JetResByFlav"
-        self.respFileName = environ["CMSSW_BASE"] + "/src/PhysicsTools/NanoSUSYTools/data/qcdJetRes/2016/resTailOut_combined_filtered_CHEF_puWeight_weight_WoH_NORMALIZED_NANO.root"
+	if self.era == "2016":
+        	self.respFileName = environ["CMSSW_BASE"] + "/src/PhysicsTools/NanoSUSYTools/data/qcdJetRes/2016/resTailOut_combined_filtered_CHEF_puWeight_weight_WoH_NORMALIZED_NANO.root"
+	elif self.era == "2017":
+        	self.respFileName = environ["CMSSW_BASE"] + "/src/PhysicsTools/NanoSUSYTools/data/qcdJetRes/2017/resTailOut_QCD_smeared_2017.root"
+	elif self.era == "2018":
+        	self.respFileName = environ["CMSSW_BASE"] + "/src/PhysicsTools/NanoSUSYTools/data/qcdJetRes/2018/resTailOut_QCD_smeared_2018.root"
         self.respHistName = ["res_light_comp_1","res_light_comp_2","res_light_comp_3","res_light_comp_4","res_light_comp_5","res_light_comp_6","res_light_comp_7","res_light_comp_8","res_light_comp_9","res_light_comp_10","res_light_comp_11","res_light_comp_12","res_light_comp_13","res_b_comp_14","res_b_comp_15","res_b_comp_16","res_b_comp_17","res_b_comp_18","res_b_comp_19","res_b_comp_20","res_b_comp_21","res_b_comp_22","res_b_comp_23","res_b_comp_24","res_b_comp_25","res_b_comp_26"]
 
     def beginJob(self,histFile=None,histDirName=None):
