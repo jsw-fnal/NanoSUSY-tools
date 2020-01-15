@@ -66,16 +66,16 @@ python Stop0l_postproc.py -i file:[input file] -d [data period] -e [year]
 * Trigger path and efficiency:
     * Once Hui's study is finalized, we will store the bit and efficiency + systematic
 
-Smearing QCD Notes NANOAOD
+##Smearing QCD Notes NANOAOD
 The QCD smearing methods require a custom version of NanoAOD-tools
 ```cd $CMSSW_BASE/src
 git clone git@github.com:mkilpatr/nanoAOD-tools.git PhysicsTools/nanoAODTools
 ```
 
-In PhysicsTools/NanoSUSYTools/python/processors/
 You need to create a QCD file with all of the qcd_orig files that you want to run over.
 
-```python Stop0l_postproc_QCD.py -p jetres
+```cd $CMSSW_Base/sr/PhysicsTools/NanoSUSYTools/python/processors/
+python Stop0l_postproc_QCD.py -p jetres
 ```
 
 For Condor
