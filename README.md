@@ -68,28 +68,33 @@ python Stop0l_postproc.py -i file:[input file] -d [data period] -e [year]
 
 ##Smearing QCD Notes NANOAOD
 The QCD smearing methods require a custom version of NanoAOD-tools
-```cd $CMSSW_BASE/src
+```
+cd $CMSSW_BASE/src
 git clone git@github.com:mkilpatr/nanoAOD-tools.git PhysicsTools/nanoAODTools
 ```
 
 You need to create a QCD file with all of the qcd_orig files that you want to run over.
 
-```cd $CMSSW_Base/sr/PhysicsTools/NanoSUSYTools/python/processors/
+```
+cd $CMSSW_Base/sr/PhysicsTools/NanoSUSYTools/python/processors/
 python Stop0l_postproc_QCD.py -p jetres
 ```
 
 For Condor
 
-```python SubmitLPC_QCD.py -f ../Stop0l_postproc_QCD.py -c ../../../../../StopCfg/sampleSets_postProcess_2016_QCD.cfg -o /store/user/{USER}/13TeV/qcdsmearing_nanoaod -p jetres
+```
+python SubmitLPC_QCD.py -f ../Stop0l_postproc_QCD.py -c ../../../../../StopCfg/sampleSets_postProcess_2016_QCD.cfg -o /store/user/{USER}/13TeV/qcdsmearing_nanoaod -p jetres
 ```
 hadd the output files together with the name "jetResSkim_combined_filtered_CHEF_NANO.root"
 
-```mv jetResSkim_combined_filtered_CHEF_NANO.root /eos/uscms/store/user/{USER}/13TeV/qcdsmearing_nanoaod/.
+```
+mv jetResSkim_combined_filtered_CHEF_NANO.root /eos/uscms/store/user/{USER}/13TeV/qcdsmearing_nanoaod/.
 ```
 
 You need to get the jet Res for the Tail Smear
 
-```root -l -b -q ../rootlogon.C GetJetResForTailSmear.C+
+```
+root -l -b -q ../rootlogon.C GetJetResForTailSmear.C+
 mkdir skims
 cd skims
 cp ../JetResDiagnostic.C .
@@ -97,13 +102,15 @@ cp ../JetResDiagnostic.C .
 
 Use JetResDiagnostic.C to create the pngs from the previous command ^
 
-```root -l -b -q ../../rootlogon.C JetResDiagnostic.C+
+```
+root -l -b -q ../../rootlogon.C JetResDiagnostic.C+
 python Stop0l_postproc_QCD.py -p smear
 ```
 
 For Condor
 
-```python SubmitLPC_QCD.py -f ../Stop0l_postproc_QCD.py -c ../../../../../StopCfg/sampleSets_PreProcessed_2016_QCD.cfg -o /store/user/{USER}/13TeV/qcdsmearing_nanoaod/ -i /store/user/{USER}/13TeV/qcdsmearing_nanoaod/resTailOut_combined_filtered_CHEF_puWeight_weight_WoH_NORMALIZED_NANO.root -p smear -m 4
+```
+python SubmitLPC_QCD.py -f ../Stop0l_postproc_QCD.py -c ../../../../../StopCfg/sampleSets_PreProcessed_2016_QCD.cfg -o /store/user/{USER}/13TeV/qcdsmearing_nanoaod/ -i /store/user/{USER}/13TeV/qcdsmearing_nanoaod/resTailOut_combined_filtered_CHEF_puWeight_weight_WoH_NORMALIZED_NANO.root -p smear -m 4
 ```
 
 After QCD smearing you need to run the add weight part of the NTuples.
@@ -111,11 +118,13 @@ You need to now create trees to run over and create the SF for the files.
 Once you create the trees from this file you need to have the met_tree.root, ttbarplusw_tree.root, and qcd_tree.root in the same directory.
 You need to link the directory to the input files in the MakeQCDRespTailSF.C in the AnalysisMethods/macros/JetMETStudies/ directory.
 
-```python Stop0l_postproc_QCD.py -p qcdsf
+```
+python Stop0l_postproc_QCD.py -p qcdsf
 ```
 For Condor
 
-```python SubmitLPC_QCD.py -f ../Stop0l_postproc_QCD.py -c ../../../../../StopCfg/sampleSets_PostProcessed_2016_QCD_SF.cfg -o /store/user/mkilpatr/13TeV/nanoaod_QCDSF/ -e 2016 -p qcdsf
+```
+python SubmitLPC_QCD.py -f ../Stop0l_postproc_QCD.py -c ../../../../../StopCfg/sampleSets_PostProcessed_2016_QCD_SF.cfg -o /store/user/mkilpatr/13TeV/nanoaod_QCDSF/ -e 2016 -p qcdsf
 cd AnalysisMethods/macros/JetMETStudies/
 root -l -b -q ../rootlogon.C MakeQCDRespTailSF_NANO.C+
 ```
