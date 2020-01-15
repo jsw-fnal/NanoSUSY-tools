@@ -74,7 +74,6 @@ git clone git@github.com:mkilpatr/nanoAOD-tools.git PhysicsTools/nanoAODTools
 
 In PhysicsTools/NanoSUSYTools/python/processors/
 You need to create a QCD file with all of the qcd_orig files that you want to run over.
-An example of all of these files is located in my area: /uscms_data/d3/mkilpatr/CMSSW_10_2_9/src/PhysicsTools/NanoSUSYTools/python/processors
 
 ```python Stop0l_postproc_QCD.py -p jetres
 ```
