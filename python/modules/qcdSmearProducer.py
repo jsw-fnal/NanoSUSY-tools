@@ -16,7 +16,11 @@ from rootpy.tree import Tree, TreeModel, IntCol, FloatArrayCol
 class qcdSmearProducer(Module):
     def __init__(self, era):
         self.writeHistFile=True
-        self.metBranchName="MET"
+	self.era = era
+	if self.era == "2017":
+		self.metBranchName = "METFixEE2017"
+	else:
+        	self.metBranchName = "MET"
         self.xBinWidth = 0.01
         self.minWindow = 0.01
         self.maxWindow = 0.5
@@ -24,7 +28,6 @@ class qcdSmearProducer(Module):
         self.nSmearJets = 2
         self.nBootstraps = 50
         self.doFlatSampling = True
-	self.era = era
         self.respInputName = "JetResByFlav"
 	if self.era == "2016":
         	self.respFileName = environ["CMSSW_BASE"] + "/src/PhysicsTools/NanoSUSYTools/data/qcdJetRes/2016/resTailOut_combined_filtered_CHEF_puWeight_weight_WoH_NORMALIZED_NANO.root"
