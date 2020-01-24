@@ -31,8 +31,10 @@ class qcdBootstrapProducer(Module):
 
     
     def analyze(self, event):
-	#Need to initialize a random seed
-	ROOT.gRandom.SetSeed(123456)
+        # Need to initialize a random seed.  Use the event number so that we
+        # have a different seed for every event, but we will get the same
+        # smearing each time if we run multiple times.
+        ROOT.gRandom.SetSeed(event.event)
 
 	b = []        
 	for iB in xrange(self.nBootstraps) :
