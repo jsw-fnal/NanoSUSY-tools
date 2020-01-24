@@ -26,8 +26,8 @@ class qcdBootstrapProducer(Module):
 
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
 	self.out = wrappedOutputTree
-	self.out.branch("nBootstrapWeight",        "I")
-	self.out.branch("bootstrapWeight",         "I", lenVar="nBootstrapWeight")
+	self.out.branch("nBootstrapWeight",        "B")
+	self.out.branch("bootstrapWeight",         "B", lenVar="nBootstrapWeight")
 
     
     def analyze(self, event):
