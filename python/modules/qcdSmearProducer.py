@@ -47,8 +47,8 @@ class qcdSmearProducer(Module):
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree, outputFileSmear, outputTreeSmear):
         self.out = wrappedOutputTree
         self.outsmear = outputTreeSmear
-        self.out.branch("nBootstrapWeight",        "I")
-        self.out.branch("bootstrapWeight",         "I", lenVar="nBootstrapWeight")
+        self.out.branch("nBootstrapWeight",        "B")
+        self.out.branch("bootstrapWeight",         "B", lenVar="nBootstrapWeight")
         self.out.branch("uniqueID", "l")
         self.outsmear.branch("Jet_pt", "F", lenVar="nJet")
         self.outsmear.branch("Jet_eta", "F", lenVar="nJet")
@@ -60,8 +60,8 @@ class qcdSmearProducer(Module):
         self.outsmear.branch("Stop0l_evtWeight", "F")
         self.outsmear.branch("Stop0l_smearWeight", "F")
         self.outsmear.branch("uniqueID", "l")
-        self.outsmear.branch("nBootstrapWeight",        "I")
-        self.outsmear.branch("bootstrapWeight",         "I", lenVar="nBootstrapWeight")
+        self.outsmear.branch("nBootstrapWeight",        "B")
+        self.outsmear.branch("bootstrapWeight",         "B", lenVar="nBootstrapWeight")
         self.targeth = self.loadHisto(self.respFileName,self.respHistName)
 
     def ptmapping(self, recojet, vecKind):
