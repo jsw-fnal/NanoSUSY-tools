@@ -172,9 +172,13 @@ def main(args):
         with open(args.inputfile) as f:
             files = [line.strip() for line in f]
 
-    p=PostProcessor(args.outputfile,files,cut="run < 319077", branchsel=None, outputbranchsel=None, postfix = "_preHEM", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    p=PostProcessor(args.outputfile,files,cut="luminosityBlock < 12000", branchsel=None, outputbranchsel=None, postfix = "_split_0", modules=mods,provenance=False,maxEvents=args.maxEvents)
     p.run()
-    p=PostProcessor(args.outputfile,files,cut="run >= 319077", branchsel=None, outputbranchsel=None, postfix = "_postHEM", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    p=PostProcessor(args.outputfile,files,cut="12000 <= luminosityBlock && luminosityBlock < 20000", branchsel=None, outputbranchsel=None, postfix = "_split_1", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    p.run()
+    p=PostProcessor(args.outputfile,files,cut="20000 <= luminosityBlock && luminosityBlock < 30000", branchsel=None, outputbranchsel=None, postfix = "_split_2", modules=mods,provenance=False,maxEvents=args.maxEvents)
+    p.run()
+    p=PostProcessor(args.outputfile,files,cut="luminosityBlock >= 30000", branchsel=None, outputbranchsel=None, postfix = "_split_3", modules=mods,provenance=False,maxEvents=args.maxEvents)
     p.run()
 
 
